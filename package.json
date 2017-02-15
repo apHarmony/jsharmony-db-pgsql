@@ -1,6 +1,6 @@
 {
   "name": "jsharmony-db-pgsql",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "jsHarmony Database Connector for PostgreSQL",
   "main": "index.js",
   "scripts": {
@@ -26,7 +26,7 @@
   "homepage": "https://github.com/apHarmony/jsharmony-db-pgsql",
   "dependencies": {
     "async": "^2.1.4",
-    "jsharmony-db": "^1.0.4",
+    "jsharmony-db": "^1.0.5",
     "lodash": "^4.14.0",
     "moment": "^2.17.1",
     "pg": "^6.1.2",
