@@ -13,8 +13,8 @@ npm install jsharmony-db-pgsql --save
 ```javascript
 var JSHpgsql = require('jsharmony-db-pgsql');
 var JSHdb = require('jsharmony-db');
-global.dbconfig = { _driver: new JSHpgsql(), host: "server.domain.com", database: "DBNAME", user: "DBUSER", password: "DBPASS" };
-var db = new JSHdb();
+var dbconfig = { _driver: new JSHpgsql(), host: "server.domain.com", database: "DBNAME", user: "DBUSER", password: "DBPASS" };
+var db = new JSHdb(dbconfig);
 db.Recordset('','select * from c where c_id >= @c_id',[JSHdb.types.BigInt],{'c_id': 10},function(err,rslt){
   console.log(rslt);
   done();

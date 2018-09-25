@@ -25,11 +25,11 @@ describe('Basic',function(){
   it('Select', function (done) {
     //Connect to database and get data
     var c_id = '10';
-    global.dbconfig = { _driver: new JSHpgsql(), server: "server.domain.com", database: "DBNAME", user: "DBUSER", password: "DBPASS" };
-    var db = new JSHdb();
+    var dbconfig = { _driver: new JSHpgsql(), host: "server.domain.com", database: "DBNAME", user: "DBUSER", password: "DBPASS" };
+    var db = new JSHdb(dbconfig);
     db.Recordset('','select * from c where c_id=@c_id',[JSHdb.types.BigInt],{'c_id': c_id},function(err,rslt){
       assert((rslt && rslt.length && (rslt[0].c_id==c_id)),'Success');
-      done();
+      db.Close(done);
     });
   });
 });
