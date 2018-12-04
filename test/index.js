@@ -24,6 +24,7 @@ var path = require('path');
 var fs = require('fs');
 var _ = require('lodash');
 var os = require('os');
+var moment = require('moment');
 
 var dbconfig = { };
 
@@ -362,6 +363,22 @@ describe('Basic',function(){
     db.RunScripts(db.platform, ['test','dropfakedb'],{},function(err,rslt,stats){
       assert(!err,'Success');
       assert(stats[0].notices[0].message.indexOf('skipping')>=0,'Script generated notice that we are skipping the drop');
+      return done();
+    });
+  });
+  it('Date passthru', function (done) {
+    //Connect to database and get data
+    db.Scalar('',"select to_char(@dt::date,'MM/DD/YYYY')",[JSHdb.types.Date],{'dt': moment('2018-12-03').toDate()},function(err,rslt){
+      assert(!err,'Success');
+      assert(rslt=='12/03/2018','Date passthru');
+      return done();
+    });
+  });
+  it('DateTime passthru', function (done) {
+    //Connect to database and get data
+    db.Scalar('',"select to_char(@dt::timestamp,'MM/DD/YYYY')",[JSHdb.types.DateTime(7)],{'dt': moment('2018-12-03').toDate()},function(err,rslt){
+      assert(!err,'Success');
+      assert(rslt=='12/03/2018','Date passthru');
       return done();
     });
   });
