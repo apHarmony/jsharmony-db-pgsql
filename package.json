@@ -27,7 +27,7 @@
   "dependencies": {
     "async": "^2.6.2",
     "jsharmony-db": "^1.1.17",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.13",
     "moment": "^2.24.0",
     "pg": "^7.6.0",
     "postgres-date-utc": "^1.0.3"
