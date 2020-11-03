@@ -39,5 +39,8 @@ dbconfig = _.extend({_driver: new JSHpgsql(), host: "server.domain.com", databas
 var db = new JSHdb(dbconfig);
 
 describe('PGSQL Objects',function(){
-  shouldBehaveLikeAnObject(db, "'2020-07-07'", '2020-07-07T00:00:00.000');
+  var rowcountSql = function(sql) {
+    return 'with xrslt as (' + sql + ' returning 1) select count(*) xrowcount from xrslt';
+  };
+  shouldBehaveLikeAnObject(db, "'2020-07-07'", '2020-07-07T00:00:00.000', rowcountSql);
 });
