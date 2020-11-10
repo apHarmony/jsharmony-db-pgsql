@@ -19,7 +19,7 @@ along with this package.  If not, see <http://www.gnu.org/licenses/>.
 
 var JSHpgsql = require('../index');
 var JSHdb = require('jsharmony-db');
-var shouldBehaveLikeAnObject = require('../../jsharmony-db/tests-shared/objects');
+var shouldGenerateFormSql = require('../../jsharmony-db/tests-shared/sql');
 var assert = require('assert');
 var path = require('path');
 var fs = require('fs');
@@ -38,9 +38,6 @@ if(fs.existsSync(path_TestDBConfig)){
 dbconfig = _.extend({_driver: new JSHpgsql(), host: "server.domain.com", database: "DBNAME", user: "DBUSER", password: "DBPASS", options: { pooled: true } },dbconfig);
 var db = new JSHdb(dbconfig);
 
-describe('PGSQL Objects',function(){
-  var rowcountSql = function(sql) {
-    return 'with xrslt as (' + sql + ' returning 1) select count(*) xrowcount from xrslt';
-  };
-  shouldBehaveLikeAnObject(db, JSHdb, "'2020-07-07'", '2020-07-07T00:00:00.000', rowcountSql);
+describe('PGSQL Forms',function(){
+  shouldGenerateFormSql(db, JSHdb, 'serial primary key');
 });
