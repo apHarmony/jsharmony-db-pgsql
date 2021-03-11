@@ -19,7 +19,7 @@ along with this package.  If not, see <http://www.gnu.org/licenses/>.
 
 var JSHpgsql = require('../index');
 var JSHdb = require('jsharmony-db');
-var shouldGenerateFormSql = require('../../jsharmony-db/tests-shared/sql');
+var shouldGenerateFormSql = require('jsharmony-db/test/shared/sql');
 var assert = require('assert');
 var path = require('path');
 var fs = require('fs');
