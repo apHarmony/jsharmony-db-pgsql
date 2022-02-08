@@ -20,12 +20,10 @@ along with this package.  If not, see <http://www.gnu.org/licenses/>.
 var JSHpgsql = require('../index');
 var JSHdb = require('jsharmony-db');
 var shouldBehaveLikeAnObject = require('jsharmony-db/test/shared/objects');
-var assert = require('assert');
 var path = require('path');
 var fs = require('fs');
 var _ = require('lodash');
 var os = require('os');
-var moment = require('moment');
 
 var dbconfig = { };
 
