@@ -1,6 +1,6 @@
 {
   "name": "jsharmony-db-pgsql",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "description": "jsHarmony Database Connector for PostgreSQL",
   "main": "index.js",
   "scripts": {
