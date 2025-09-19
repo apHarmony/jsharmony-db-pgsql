@@ -29,7 +29,8 @@
     "jsharmony-db": "^1.2.0",
     "lodash": "^4.17.19",
     "moment": "^2.24.0",
-    "pg": "^8.7.3",
+    "pg": "8.16.3",
+    "pg-query-stream": "4.10.3",
     "postgres-date-utc": "^1.0.3"
   },
   "devDependencies": {

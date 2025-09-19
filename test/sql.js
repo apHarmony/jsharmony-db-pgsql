@@ -37,5 +37,5 @@ dbconfig = _.extend({_driver: new JSHpgsql(), host: "server.domain.com", databas
 var db = new JSHdb(dbconfig);
 
 describe('PGSQL Forms',function(){
-  shouldGenerateFormSql(db, JSHdb, 'serial primary key');
+  shouldGenerateFormSql(db, JSHdb, 'serial primary key', 'timestamp');
 });
