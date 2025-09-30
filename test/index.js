@@ -479,7 +479,6 @@ describe('Basic',function(){
   });
   it('ExecTasks - Stream Pause', function (done) {
     //Connect to database and get data
-    this.timeout(5000);
     var rslt = [];
     db.StreamRecordset('','select 1 a union select 2 a union select 3 a;',[],{},{
       onRow: function(row, row_cb){
@@ -497,9 +496,8 @@ describe('Basic',function(){
   });
   it('ExecTasks - Stream Error', function (done) {
     //Connect to database and get data
-    this.timeout(5000);
     var rslt = [];
-    db.StreamRecordset('','select 1 a union select 2 a union select 3 a;',[],{},{
+    db.StreamRecordset('',"select 1 a union select 2 a union select 3 a;",[],{},{
       onRow: function(row, row_cb){
         setTimeout(function(){
           rslt.push(row);
@@ -512,6 +510,25 @@ describe('Basic',function(){
         return done();
       }
     });
+  });
+  it('ExecTasks - Multiline Statement for Recordset', function (done) {
+    //Connect to database and get data
+    db.Recordset('',"set sessionvars.appuser to 'task';set sessionvars.last_trigger_source to '';select 1 a union select 2 a union select 3 a;",[],{},function(err,rslt){
+      assert(!err,'Success');
+      assert(rslt&&(rslt.length==3)&&(rslt[0].a==1)&&(rslt[1].a==2)&&(rslt[2].a==3),'Correct result');
+      return done();
+    });
+  });
+  it('ExecTasks - Error on StreamRecordset w/Context (Multiline StreamRecordset not supported w/PostgreSQL)', function (done) {
+    var err = false;
+    try{
+      db.StreamRecordset('abc',"select 1 a union select 2 a union select 3 a;",[],{},{});
+    }
+    catch(ex){
+      err = true;
+    }
+    assert(err,'Error');
+    return done();
   });
   after(function(done){
     assert(db.dbconfig._driver.pool.length==1,'Pool exists');
